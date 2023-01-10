@@ -1,6 +1,6 @@
 --!strict
 local Package = script
-local Packages = script.Parent
+local Packages = Package.Parent
 
 local Vector = require(Packages:WaitForChild("Vector"))
 
@@ -8,44 +8,18 @@ export type Vector = Vector.Vector
 export type Alpha = number
 export type BezierSolver<T> = (alpha: Alpha) -> T
 
-
---- @class CurveUtil
-
-
 local CurveUtil = {}
 CurveUtil.__index = CurveUtil
-
---- @function lerp
---- @within Algebra
---- @param a: any
---- @param b: any
---- @param alpha: Alpha
---- @return any
---- performs a linear interpolation on a wide set of Roblox types, as well as any custom object with a :Lerp method.
 
 local Lerp = require(script.Lerp)
 function CurveUtil.lerp<T>(a: T, b: T, alpha: Alpha): T
 	return Lerp(a, b, alpha)
 end
 
---- @function ease
---- @within Algebra
---- @param alpha: Alpha
---- @param easingStyle: Enum.EasingStyle
---- @param easingDirection: Enum.EasingDirection
---- @return Alpha
---- adjusts and alpha value similar to how [TweenService:GetValue](https://developer.roblox.com/en-us/api-reference/function/TweenService/GetValue).
-
 local Ease = require(script.Ease)
 function CurveUtil.ease(alpha: Alpha, easingStyle: Enum.EasingStyle, easingDirection: Enum.EasingDirection): Alpha
 	return Ease(alpha, easingStyle, easingDirection)
 end
-
---- @function bezier
---- @within Algebra
---- @param ... Vector | Vector2 | Vector3
---- @return (Alpha) -> Vector | Vector2 | Vector3
---- takes points as parameters and returns a function that when provided an alpha will give the corresponding point on the bezier line constructed from those parameters.
 
 type bezierable = Vector2 | Vector3 | Vector
 function CurveUtil.bezier<bezierable>(...): BezierSolver<bezierable>
