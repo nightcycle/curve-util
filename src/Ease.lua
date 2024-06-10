@@ -1,5 +1,5 @@
 --!strict
-
+--!native
 -- Prescribed Material design Beziers and optimized Robert Penner functions
 -- @CJ_Oyer reformated for this library
 -- @rostrap EasingFunctions
