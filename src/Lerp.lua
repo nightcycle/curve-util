@@ -1,4 +1,5 @@
 --!strict
+--!native
 local typeLerps = {} :: { [string]: (v1: any, v2: any, a: number) -> any }
 
 function lerp(value1: any, value2: any, alpha: number): any --written by CJ_Oyer, 2022
